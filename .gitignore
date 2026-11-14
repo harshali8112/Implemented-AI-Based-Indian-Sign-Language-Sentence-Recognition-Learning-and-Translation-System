@@ -1,6 +1,6 @@
 # Virtual environments
 .venv/
-.venv*/
+.venv312/
 venv/
 env/
 
@@ -12,12 +12,13 @@ __pycache__/
 .idea/
 .vscode/
 
-# Local data and temporary files (too large / contain personal video)
+# Dataset and temporary files (too large or personal)
 custom_dataset/
 keypoint_sequences/
 temp/
 *.avi
 *.mp4
+*.npy
 
 # Secrets and OS files
 .env
