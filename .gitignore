@@ -1,0 +1,25 @@
+# Virtual environments
+.venv/
+.venv*/
+venv/
+env/
+
+# Python cache
+__pycache__/
+*.pyc
+
+# IDE
+.idea/
+.vscode/
+
+# Local data and temporary files (too large / contain personal video)
+custom_dataset/
+keypoint_sequences/
+temp/
+*.avi
+*.mp4
+
+# Secrets and OS files
+.env
+.DS_Store
+Thumbs.db
