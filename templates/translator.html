@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Translator | ISL Sense</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body class="dashboard-page">
+{% include 'partials/navbar.html' %}
+<main class="container dashboard-main">
+  <div class="page-heading">
+    <div><span class="eyebrow"><span class="pulse-dot"></span> Live workspace</span><h1>Sign naturally.<br><em>We will handle the rest.</em></h1></div>
+    <p>Real-time sentence recognition powered by MediaPipe Holistic, 1D-CNN, and Bi-LSTM.</p>
+  </div>
+  <section class="dashboard-grid">
+    <div class="camera-column">
+      <div class="camera-card">
+        <img id="video-feed" src="{{ url_for('video_feed') }}" alt="Live camera stream">
+        <div class="camera-overlay"><span class="live-tag"><span class="pulse-dot"></span> CAMERA ACTIVE</span><span class="camera-label">Server inference feed</span></div>
+        <div class="camera-corner camera-corner-tl"></div><div class="camera-corner camera-corner-br"></div>
+      </div>
+      <div class="status-row"><div class="status"><span class="status-dot" id="status-dot"></span><span id="status-label">Idle</span></div></div>
+      <p class="dashboard-hint">Keep both hands visible and sign one phrase at a natural pace.</p>
+    </div>
+    <aside class="prediction-column">
+      <div class="prediction-card">
+        <div class="card-label"><span>Current prediction</span><span class="card-live">● LIVE</span></div>
+        <div class="prediction-output" aria-live="polite"><span class="output-kicker">Model state</span><p id="caption-text">Waiting for the camera...</p></div>
+        <div class="confidence-block"><div><span>Confidence score</span><strong id="confidence-value">0%</strong></div><div class="confidence-track"><div class="confidence-fill" id="confidence-fill"></div></div></div>
+      </div>
+      <div class="sentence-card">
+        <div class="card-label"><span>Locked sentence</span><span id="token-count">0 phrases</span></div>
+        <p id="locked-sentence" class="locked-sentence">Waiting for gesture...</p>
+        <div class="session-countdown" aria-label="Sentence session time remaining"><span id="session-countdown-fill"></span></div>
+      </div>
+      <div class="model-card">
+        <div class="card-label"><span>Session controls</span><span class="ready-badge">● Ready</span></div>
+        <div class="control-row"><button type="button" class="button button-small" id="clear-sentence">Clear sentence</button><button type="button" class="button button-small button-muted" id="mute-tts" aria-pressed="false">Mute TTS</button></div>
+      </div>
+    </aside>
+  </section>
+  <section class="history-section"><div class="section-heading compact"><div><span class="eyebrow">SESSION LOG</span><h2>Prediction history</h2></div><span class="history-count">Live session</span></div><div class="history-table"><div class="history-header"><span>TIME</span><span>PHRASE</span><span>CONFIDENCE</span></div><div class="history-empty" id="history-empty"><span>◷</span><p>Your recognized phrases will appear here.</p></div><div id="history-list"></div></div></section>
+</main>
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mudra — Live Indian Sign Language Translation</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<main class="page">
+
+  <header class="masthead">
+    <div class="mark" aria-hidden="true">
+      <span class="mark-dot mark-dot--a"></span>
+      <span class="mark-dot mark-dot--b"></span>
+    </div>
+    <div class="masthead-text">
+      <h1>Mudra</h1>
+      <p>Live Indian Sign Language translation</p>
+    </div>
+  </header>
+
+  <section class="stage" aria-label="Camera and translation">
+
+    <div class="frame" id="frame">
+      <video id="webcam" autoplay playsinline muted></video>
+
+      <div class="scrim" aria-hidden="true"></div>
+
+      <div class="caption" id="caption-region" aria-live="polite">
+        <p class="caption-text" id="caption-text">Turning on your camera&hellip;</p>
+        <div class="confidence-track">
+          <div class="confidence-fill" id="confidence-fill"></div>
+        </div>
+      </div>
+    </div>
+
+    <div class="status-row">
+      <div class="status" id="status">
+        <span class="status-dot" id="status-dot"></span>
+        <span id="status-label">Getting ready</span>
+      </div>
+      <button type="button" class="btn-restart" id="restart-btn" onclick="resetAndRestartTracking()" hidden>
+        Track next sentence
+      </button>
+    </div>
+
+    <p class="hint">Face the camera and sign a full sentence at a natural pace. The translation will appear on screen once your gesture is recognized.</p>
+
+  </section>
+
+</main>
+
+<script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
